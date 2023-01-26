@@ -7,10 +7,7 @@ class Answer extends StatelessWidget {
   final int question_no;
   final int selected_option;
 
-void testFunction(){
-  print("calling function");
 
-}
   Answer(
       {required this.answerText,
       required this.imagePath,
