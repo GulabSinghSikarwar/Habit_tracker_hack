@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Answer.dart';
 import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Question.dart';
 
-class Quiz extends StatelessWidget {
+class Quiz extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return QuizState();
+  }
+}
+
+class QuizState extends State {
   final List _quizDetail = [
     {
       "question": "Do you procastinate ?",
@@ -31,11 +39,20 @@ class Quiz extends StatelessWidget {
     'images/option3.png',
   ];
 
+  // void answerQuestion({int? selected_answer, int? question_no}) {
   void answerQuestion(
-      { int? selected_answer,  int? question_no}) {
-        print("reach here ");
-        
-    selected_answers.add({"question": question_no, "answer": selected_answers});
+      {required int selected_answer, required int question_no}) {
+    if (question_no >= 1) {
+      //  move to next Screen 
+      
+    } else {
+      _questionIndex++;
+
+      setState(() {});
+
+      selected_answers
+          .add({"question": question_no, "answer": selected_answers});
+    }
   }
 
   @override
@@ -45,21 +62,19 @@ class Quiz extends StatelessWidget {
       // rgba(49, 30, 182, 1)
       width: double.infinity,
       height: double.infinity,
-      
+
       color: Color.fromRGBO(49, 30, 182, 1),
-      
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Question(questionText: _quizDetail[_questionIndex]["question"]),
           Container(
-
             // color: Colors.yellow,
-            
-            height: MediaQuery.of(context).size.height/2,
+
+            height: MediaQuery.of(context).size.height / 2,
             child: Column(
-            
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Answer(

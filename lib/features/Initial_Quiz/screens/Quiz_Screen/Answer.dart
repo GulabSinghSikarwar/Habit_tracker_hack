@@ -7,6 +7,10 @@ class Answer extends StatelessWidget {
   final int question_no;
   final int selected_option;
 
+void testFunction(){
+  print("calling function");
+
+}
   Answer(
       {required this.answerText,
       required this.imagePath,
@@ -20,8 +24,11 @@ class Answer extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        answerQuestion(
-            selected_option: selected_option, question_no: question_no);
+        
+        answerQuestion(selected_answer:selected_option,question_no:question_no);
+
+          
+
       },
       child: Container(
         margin: (selected_option==2)?EdgeInsets.fromLTRB(0, 0, 0, 30):null,
