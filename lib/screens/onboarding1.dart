@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/screens/chooseHabit.dart';
 
 class OnboardingPage1 extends StatelessWidget {
   const OnboardingPage1({super.key});
@@ -95,7 +96,7 @@ class button extends StatelessWidget {
             context,
             MaterialPageRoute(
               //change onboarding
-              builder: (context) => OnboardingPage1(),
+              builder: (context) => chooseHabit(),
             ),
           ),
         },
