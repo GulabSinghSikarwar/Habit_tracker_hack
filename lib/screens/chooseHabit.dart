@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:habit_tracker/screens/createhabit.dart';
 
 class chooseHabit extends StatelessWidget {
   const chooseHabit({super.key});
@@ -17,10 +18,21 @@ class chooseHabit extends StatelessWidget {
               margin: EdgeInsets.all(20),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                    size: 30.0,
+                  InkWell(
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          //change onboarding
+                          builder: (context) => createHabit(),
+                        ),
+                      ),
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 30.0,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
