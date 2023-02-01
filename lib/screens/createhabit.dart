@@ -13,6 +13,12 @@ class createHabit extends StatefulWidget {
 class _createHabitState extends State<createHabit> {
   get habitNameController => null;
   Color habitColor = Colors.red;
+  // bool habitGoal = false;
+  bool habitGoal = true;
+  //if 0 select # of times else Time
+  int goalForHabitOptions = 0;
+  Color firstColor = Color(0xFF1694FF);
+  Color secondColor = Color(0xFF2F313E);
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +142,7 @@ class _createHabitState extends State<createHabit> {
                                 color: Color(0xff1E212A),
                                 alignment: Alignment.center,
                                 width: MediaQuery.of(context).size.width / 2,
-                                height:
-                                    MediaQuery.of(context).size.height / 1.3,
+                                height: MediaQuery.of(context).size.height,
                                 child: BlockPicker(
                                   pickerColor: habitColor, //default color
                                   onColorChanged: (Color color) {
@@ -172,9 +177,97 @@ class _createHabitState extends State<createHabit> {
             ]),
           ),
           //goal for habit
-          Container(),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Color(0xff2F313E),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Goal for Habit",
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
+                    //continue - adding the checkbox
+                    Checkbox(
+                      value: this.habitGoal,
+                      onChanged: (bool? habitGoal) {
+                        setState(() {
+                          this.habitGoal = habitGoal!;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                if (habitGoal) getGoalForHabit()
+              ],
+            ),
+          ),
         ]),
       ),
     ));
+  }
+
+  getGoalForHabit() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: (() => {
+                    setState(
+                      () => {
+                        goalForHabitOptions = 0,
+                        getActiveHabitOption(),
+                      },
+                    )
+                  }),
+              child: Text("# of times"),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                shape: StadiumBorder(),
+                primary: firstColor,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: (() => {
+                    setState(
+                      () => {
+                        goalForHabitOptions = 1,
+                        getActiveHabitOption(),
+                        print(1),
+                      },
+                    )
+                  }),
+              child: Text("Time"),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                shape: StadiumBorder(),
+                primary: secondColor,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  void getActiveHabitOption() {
+    if (goalForHabitOptions == 0) {
+      Color firstColor = Color(0xFF1694FF);
+      Color secondColor = Color(0xFF2F313E);
+    } else {
+      Color firstColor = Color(0xFF2F313E);
+      Color secondColor = Color(0xFF1694FF);
+    }
   }
 }

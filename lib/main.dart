@@ -19,10 +19,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        unselectedWidgetColor: Colors.white,
         textTheme: TextTheme(
           headline1: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          headline2: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
             color: Colors.white,
           ),
           subtitle1: TextStyle(color: Colors.white),
