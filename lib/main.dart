@@ -31,6 +31,11 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w400,
             color: Colors.white,
           ),
+          headline3: TextStyle(
+            fontSize: 14,
+            // fontWeight: FontWeight.w400,
+            color: Colors.white,
+          ),
           subtitle1: TextStyle(color: Colors.white),
         ),
         // buttonTheme:

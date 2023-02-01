@@ -12,13 +12,16 @@ class createHabit extends StatefulWidget {
 
 class _createHabitState extends State<createHabit> {
   get habitNameController => null;
-  Color habitColor = Colors.red;
+  Color habitColor = Colors.blue;
   // bool habitGoal = false;
   bool habitGoal = true;
   //if 0 select # of times else Time
   int goalForHabitOptions = 0;
   Color firstColor = Color(0xFF1694FF);
   Color secondColor = Color(0xFF2F313E);
+  int repetation = 0;
+
+  get noOfTimesController => null;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +106,7 @@ class _createHabitState extends State<createHabit> {
                     Container(
                       child: TextFormField(
                         controller: habitNameController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           alignLabelWithHint: true,
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 175, 175, 175)),
@@ -166,14 +169,7 @@ class _createHabitState extends State<createHabit> {
                     style: Theme.of(context).textTheme.subtitle1,
                   )
                 ],
-              )
-                  //   child: BlockPicker(
-                  // pickerColor: Colors.red, //default color
-                  // onColorChanged: (Color color) {
-                  //   //on color picked
-                  //   print(color);
-                  // },),
-                  ),
+              )),
             ]),
           ),
           //goal for habit
@@ -205,11 +201,81 @@ class _createHabitState extends State<createHabit> {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
-                if (habitGoal) getGoalForHabit()
+                if (habitGoal) getGoalForHabit(),
               ],
             ),
+          ),
+          //set repetation
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Color(0xff2F313E),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(children: [
+              Row(
+                children: [
+                  //daily button
+                  ElevatedButton(
+                    onPressed: (() => {
+                          setState(
+                            () => {
+                              repetation = 0,
+                            },
+                          )
+                        }),
+                    child: Text("Daily"),
+                    style: ElevatedButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                      shape: StadiumBorder(),
+                      // primary: firstColor,
+                    ),
+                  ),
+                  //weekly button
+                  ElevatedButton(
+                    onPressed: (() => {
+                          setState(
+                            () => {
+                              repetation = 1,
+                            },
+                          )
+                        }),
+                    child: Text("Weekly"),
+                    style: ElevatedButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                      shape: StadiumBorder(),
+                      primary: secondColor,
+                    ),
+                  ),
+                  //monthly button
+                  ElevatedButton(
+                    onPressed: (() => {
+                          setState(
+                            () => {
+                              repetation = 2,
+                            },
+                          )
+                        }),
+                    child: Text("Monthly"),
+                    style: ElevatedButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                      shape: StadiumBorder(),
+                      primary: secondColor,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              if (repetation == 0) (showDays()),
+            ]),
           ),
         ]),
       ),
@@ -228,6 +294,7 @@ class _createHabitState extends State<createHabit> {
                       () => {
                         goalForHabitOptions = 0,
                         getActiveHabitOption(),
+                        getGoalForHabit(),
                       },
                     )
                   }),
@@ -235,6 +302,7 @@ class _createHabitState extends State<createHabit> {
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 shape: StadiumBorder(),
+                // primary: firstColor,
                 primary: firstColor,
               ),
             ),
@@ -244,7 +312,7 @@ class _createHabitState extends State<createHabit> {
                       () => {
                         goalForHabitOptions = 1,
                         getActiveHabitOption(),
-                        print(1),
+                        getGoalForHabit(),
                       },
                     )
                   }),
@@ -257,17 +325,59 @@ class _createHabitState extends State<createHabit> {
             ),
           ],
         ),
+        if (goalForHabitOptions == 0)
+          (habitGoalInputField('0 times'))
+        else
+          (habitGoalInputField('0 minuts')),
       ],
+    );
+  }
+
+  habitGoalInputField(String time) {
+    return TextFormField(
+      controller: noOfTimesController,
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        alignLabelWithHint: true,
+        hintStyle: TextStyle(color: Color.fromARGB(255, 175, 175, 175)),
+        hintText: time,
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF1694FF)),
+        ),
+      ),
     );
   }
 
   void getActiveHabitOption() {
     if (goalForHabitOptions == 0) {
-      Color firstColor = Color(0xFF1694FF);
-      Color secondColor = Color(0xFF2F313E);
+      firstColor = Color(0xFF1694FF);
+      secondColor = Color(0xFF2F313E);
+      print(goalForHabitOptions);
     } else {
-      Color firstColor = Color(0xFF2F313E);
-      Color secondColor = Color(0xFF1694FF);
+      firstColor = Color(0xFF2F313E);
+      secondColor = Color(0xFF1694FF);
+      print(goalForHabitOptions);
     }
+  }
+
+  showDays() {
+    List<String> days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        for (int i = 0; i < days.length; i++)
+          (Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: firstColor,
+            ),
+            child: Text(
+              '${days[i]}',
+              style: Theme.of(context).textTheme.headline3,
+            ),
+          )),
+      ],
+    );
   }
 }
