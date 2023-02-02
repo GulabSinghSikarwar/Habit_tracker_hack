@@ -20,13 +20,14 @@ class chooseHabit extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //change onboarding
-                          builder: (context) => createHabit(),
-                        ),
-                      ),
+                      Navigator.pop(context),
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     //change onboarding
+                      //     builder: (context) => createHabit(),
+                      //   ),
+                      // ),
                     },
                     child: Icon(
                       Icons.arrow_back,

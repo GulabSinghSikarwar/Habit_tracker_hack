@@ -6,6 +6,7 @@ import 'package:habit_tracker/core/constant/routes/routes.dart';
 import 'package:habit_tracker/features/Homescreen/Homescreen_functionalities/todays_task/todaysTask.dart';
 import 'package:habit_tracker/features/Homescreen/inineCalendar/inline_calendar.dart';
 import 'package:habit_tracker/features/TestingFormScreen/testForm.dart';
+import 'package:habit_tracker/screens/chooseHabit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Homescreen extends StatefulWidget {
@@ -23,16 +24,13 @@ class HomeScreenState extends State<Homescreen> {
     allHabits = allHabitList;
   }
 
-  void updateAllHabits  (List<String> updatedList)  {
+  void updateAllHabits(List<String> updatedList) {
     setState(() {
       allHabits = [...updatedList];
     });
-    
+
     updateListInSP(allHabits);
 
-
-
-    
     //  this will  update all  habits and at shared preferences
     //
   }
@@ -63,8 +61,7 @@ class HomeScreenState extends State<Homescreen> {
           onPressed: (() {
             Navigator.push(context, MaterialPageRoute(
               builder: (context) {
-                return TestForm(
-                    allHabits: allHabits, updateAllHabits: updateAllHabits);
+                return chooseHabit();
               },
             ));
           }),
@@ -72,6 +69,7 @@ class HomeScreenState extends State<Homescreen> {
         ),
         body: SafeArea(
           child: Container(
+            color: Color(0xFF1E212A),
             child: FutureBuilder(
               future: getAllHabitData(),
               builder: (context, snapshot) {
@@ -135,11 +133,9 @@ class HomeScreenState extends State<Homescreen> {
           ),
         ));
   }
-  
-  void updateListInSP(List<String> allHabits)async {
+
+  void updateListInSP(List<String> allHabits) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList('items', <String>['Earth', 'Moon', 'Sun']);
-
-
   }
 }

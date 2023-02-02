@@ -46,10 +46,10 @@ class MyApp extends StatelessWidget {
         // buttonTheme:
       ),
       // home: SplashScreen(),
-      initialRoute: '/createHabit',
+      initialRoute: '/onboarding1',
       routes: {
         // "/": (context) => SplashScreen(),
-        '/onboarding1': (context) => OnboardingPage1(),
+        '/onboarding1': (context) => Homescreen(),
         '/chooseHabit': (context) => chooseHabit(),
         '/createHabit': (context) => createHabit(),
         // '/onboarding3': (context) => OnboardingPage3(),
