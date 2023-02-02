@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:habit_tracker/screens/createhabit.dart';
+import 'package:habit_tracker/screens/quickHabits/prevent.dart';
+import 'package:habit_tracker/screens/quickHabits/stayhome.dart';
 
 class chooseHabit extends StatelessWidget {
   const chooseHabit({super.key});
@@ -21,13 +23,6 @@ class chooseHabit extends StatelessWidget {
                   InkWell(
                     onTap: () => {
                       Navigator.pop(context),
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     //change onboarding
-                      //     builder: (context) => createHabit(),
-                      //   ),
-                      // ),
                     },
                     child: Icon(
                       Icons.arrow_back,
@@ -55,24 +50,35 @@ class chooseHabit extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: Color(0xFF2F313E),
               ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.calendar_month,
-                    color: Colors.blue,
-                    size: 30.0,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: Text(
-                      "Regular habit",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
+              child: InkWell(
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      //change onboarding
+                      builder: (context) => createHabit(),
                     ),
                   ),
-                ],
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.calendar_month,
+                      color: Colors.blue,
+                      size: 30.0,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 20),
+                      child: Text(
+                        "Regular habit",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
@@ -110,7 +116,7 @@ class chooseHabit extends StatelessWidget {
                 style: TextStyle(color: Colors.grey),
               ),
             ),
-            ...getImageList(),
+            ...getImageList(context),
           ],
         ),
       ),
@@ -118,24 +124,68 @@ class chooseHabit extends StatelessWidget {
   }
 }
 
-List<Widget> getImageList() {
-  List<String> images = [
-    "habit1",
-    "habit2",
-    "habit3",
-    "habit4",
-    "habit5",
-    "habit6",
-    "habit7",
+List<Widget> getImageList(BuildContext context) {
+  final List habitCategories = [
+    {
+      "image": "habit1",
+      "link": null,
+    },
+    {
+      "image": "habit2",
+      "link": stayHomeHabit(),
+    },
+    {
+      "image": "habit3",
+      "link": preventoption(),
+    },
+    {
+      "image": "habit4",
+      "link": null,
+    },
+    {
+      "image": "habit5",
+      "link": null,
+    },
+    {
+      "image": "habit6",
+      "link": null,
+    },
+    {
+      "image": "habit7",
+      "link": null,
+    },
   ];
+  // List<String> images = [
+  //   "habit1",
+  //   "habit2",
+  //   "habit3",
+  //   "habit4",
+  //   "habit5",
+  //   "habit6",
+  //   "habit7",
+  // ];
   List<Widget> myResult = [];
 
-  for (var i = 0; i < images.length; i++) {
+  for (var i = 0; i < habitCategories.length; i++) {
     myResult.add(Container(
       height: 150,
       padding: EdgeInsets.all(15),
-      child: Image.asset(
-        'images/${images[i]}.png',
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: InkWell(
+        onTap: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              //change onboarding
+              builder: (context) => habitCategories[i]["link"],
+            ),
+          )
+        },
+        child: Image.asset(
+          'images/${habitCategories[i]["image"]}.png',
+        ),
       ),
     ));
   }

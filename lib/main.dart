@@ -1,4 +1,6 @@
 // import 'package:habit_tracker/screens/login.dart';
+import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Answer.dart';
+import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Quiz.dart';
 import 'package:habit_tracker/screens/chooseHabit.dart';
 import 'package:habit_tracker/screens/createhabit.dart';
 import 'package:habit_tracker/screens/onboarding1.dart';
@@ -8,6 +10,8 @@ import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
 import 'package:habit_tracker/features/Homescreen/inineCalendar/inline_calendar.dart';
 import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Quiz.dart';
 import 'package:habit_tracker/features/TestingFormScreen/testForm.dart';
+import 'package:habit_tracker/screens/quickHabits/prevent.dart';
+import 'package:habit_tracker/screens/quickHabits/stayhome.dart';
 
 void main() {
   runApp(MyApp());
@@ -50,8 +54,12 @@ class MyApp extends StatelessWidget {
       routes: {
         // "/": (context) => SplashScreen(),
         '/onboarding1': (context) => Homescreen(),
+        // '/onboarding1': (context) => Quiz(),
+        //'/onboarding1': (context) => OnboardingPage1(),
         '/chooseHabit': (context) => chooseHabit(),
         '/createHabit': (context) => createHabit(),
+        '/stayHomeHabit': (context) => stayHomeHabit(),
+        '/preventoption': (context) => preventoption(),
         // '/onboarding3': (context) => OnboardingPage3(),
       },
     );

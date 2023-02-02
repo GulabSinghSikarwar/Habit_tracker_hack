@@ -43,8 +43,8 @@ class QuizState extends State {
   void answerQuestion(
       {required int selected_answer, required int question_no}) {
     if (question_no >= 1) {
-      //  move to next Screen 
-      
+      //  move to next Screen
+
     } else {
       _questionIndex++;
 
@@ -58,47 +58,51 @@ class QuizState extends State {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      // rgba(49, 30, 182, 1)
-      width: double.infinity,
-      height: double.infinity,
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          // rgba(49, 30, 182, 1)
+          width: double.infinity,
+          height: double.infinity,
 
-      color: Color.fromRGBO(49, 30, 182, 1),
+          color: Color.fromRGBO(49, 30, 182, 1),
 
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Question(questionText: _quizDetail[_questionIndex]["question"]),
-          Container(
-            // color: Colors.yellow,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Question(questionText: _quizDetail[_questionIndex]["question"]),
+              Container(
+                // color: Colors.yellow,
 
-            height: MediaQuery.of(context).size.height / 2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Answer(
-                    answerText: _quizDetail[_questionIndex]["answer"][0],
-                    imagePath: imagePath[0],
-                    answerQuestion: answerQuestion,
-                    selected_option: 0,
-                    question_no: _questionIndex),
-                Answer(
-                    answerText: _quizDetail[_questionIndex]["answer"][1],
-                    imagePath: imagePath[1],
-                    answerQuestion: answerQuestion,
-                    selected_option: 1,
-                    question_no: _questionIndex),
-                Answer(
-                    answerText: _quizDetail[_questionIndex]["answer"][2],
-                    imagePath: imagePath[2],
-                    answerQuestion: answerQuestion,
-                    selected_option: 2,
-                    question_no: _questionIndex),
-              ],
-            ),
-          )
-        ],
+                height: MediaQuery.of(context).size.height / 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Answer(
+                        answerText: _quizDetail[_questionIndex]["answer"][0],
+                        imagePath: imagePath[0],
+                        answerQuestion: answerQuestion,
+                        selected_option: 0,
+                        question_no: _questionIndex),
+                    Answer(
+                        answerText: _quizDetail[_questionIndex]["answer"][1],
+                        imagePath: imagePath[1],
+                        answerQuestion: answerQuestion,
+                        selected_option: 1,
+                        question_no: _questionIndex),
+                    Answer(
+                        answerText: _quizDetail[_questionIndex]["answer"][2],
+                        imagePath: imagePath[2],
+                        answerQuestion: answerQuestion,
+                        selected_option: 2,
+                        question_no: _questionIndex),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
