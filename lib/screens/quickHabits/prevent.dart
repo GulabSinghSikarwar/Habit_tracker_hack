@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:habit_tracker/screens/chooseHabit.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(preventoption());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class preventoption extends StatelessWidget {
+  const preventoption({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,18 +28,27 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
-          leading: Icon(Icons.arrow_back),
+          leading: InkWell(
+              onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => chooseHabit(),
+                      ),
+                    )
+                  },
+              child: Icon(Icons.arrow_back)),
           expandedHeight: 200,
           flexibleSpace: FlexibleSpaceBar(
             background: Image.asset(
-              'assets/preventive.png',
+              'images/preventive.png',
               fit: BoxFit.cover,
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 title: Text(
@@ -53,7 +63,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: Icon(FontAwesomeIcons.handsBubbles,
@@ -70,7 +80,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: Icon(FontAwesomeIcons.headSideMask,
@@ -87,7 +97,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: Icon(FontAwesomeIcons.peopleArrows,
@@ -104,7 +114,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: Icon(FontAwesomeIcons.boxTissue,
@@ -121,7 +131,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: Icon(FontAwesomeIcons.pumpMedical,
@@ -138,7 +148,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: Icon(FontAwesomeIcons.house,
@@ -155,7 +165,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SliverToBoxAdapter(
           child: Container(
-              color: Color.fromARGB(233, 19, 12, 12),
+              color: Color(0xFF1E212A),
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 leading: Icon(FontAwesomeIcons.thermometer,
