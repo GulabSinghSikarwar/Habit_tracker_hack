@@ -1,3 +1,7 @@
+// import 'package:habit_tracker/screens/login.dart';
+import 'package:habit_tracker/screens/chooseHabit.dart';
+import 'package:habit_tracker/screens/createhabit.dart';
+import 'package:habit_tracker/screens/onboarding1.dart';
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/core/constant/routes/routes.dart';
 import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
@@ -16,22 +20,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme:ThemeData.dark(),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: (() {}),
-      //   child: Icon(Icons.add),
-      // ),
-      title: 'Flutter Demo',
-      theme: ThemeData.dark(),
-
-      initialRoute: Routes.Homescreen,
-      
+      title: 'Blood Bank App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        unselectedWidgetColor: Colors.white,
+        textTheme: TextTheme(
+          headline1: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          headline2: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+            color: Colors.white,
+          ),
+          headline3: TextStyle(
+            fontSize: 14,
+            // fontWeight: FontWeight.w400,
+            color: Colors.white,
+          ),
+          subtitle1: TextStyle(color: Colors.white),
+        ),
+        // buttonTheme:
+      ),
+      // home: SplashScreen(),
+      initialRoute: '/createHabit',
       routes: {
-        Routes.Homescreen: (context) => Homescreen(),
-        
+        // "/": (context) => SplashScreen(),
+        '/onboarding1': (context) => OnboardingPage1(),
+        '/chooseHabit': (context) => chooseHabit(),
+        '/createHabit': (context) => createHabit(),
+        // '/onboarding3': (context) => OnboardingPage3(),
       },
-      // home: Homescreen(),
-      // home: Homescreen(),
     );
   }
 }
