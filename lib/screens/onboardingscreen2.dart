@@ -3,8 +3,8 @@ import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
 import 'package:habit_tracker/screens/chooseHabit.dart';
 import 'package:habit_tracker/screens/quickHabits/prevent.dart';
 
-class OnboardingPage1 extends StatelessWidget {
-  const OnboardingPage1({super.key});
+class OnboardingPage2 extends StatelessWidget {
+  const OnboardingPage2({super.key});
 
   @override
   Widget build(BuildContext context) {
