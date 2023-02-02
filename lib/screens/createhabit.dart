@@ -14,7 +14,7 @@ class _createHabitState extends State<createHabit> {
   get habitNameController => null;
   Color habitColor = Colors.blue;
   // bool habitGoal = false;
-  bool habitGoal = true;
+  bool habitGoal = false;
   //if 0 select # of times else Time
   int goalForHabitOptions = 0;
   Color firstColor = Color(0xFF1694FF);
@@ -367,14 +367,17 @@ class _createHabitState extends State<createHabit> {
       children: [
         for (int i = 0; i < days.length; i++)
           (Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+            width: 38,
+            height: 38,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: firstColor,
             ),
-            child: Text(
-              '${days[i]}',
-              style: Theme.of(context).textTheme.headline3,
+            child: Center(
+              child: Text(
+                '${days[i]}',
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ),
           )),
       ],
