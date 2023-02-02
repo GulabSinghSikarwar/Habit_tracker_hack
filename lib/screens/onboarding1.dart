@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
 import 'package:habit_tracker/screens/chooseHabit.dart';
+import 'package:habit_tracker/screens/quickHabits/prevent.dart';
 
 class OnboardingPage1 extends StatelessWidget {
   const OnboardingPage1({super.key});
@@ -96,7 +98,7 @@ class button extends StatelessWidget {
             context,
             MaterialPageRoute(
               //change onboarding
-              builder: (context) => chooseHabit(),
+              builder: (context) => Homescreen(),
             ),
           ),
         },
