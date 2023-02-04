@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
 import 'package:habit_tracker/screens/chooseHabit.dart';
+import '../core/constant/Models/Habit.dart';
+import '../core/constant/routes/routes.dart';
 
 final List<bool> _selectedDay = <bool>[
   false,
@@ -29,16 +34,82 @@ Color firstColor = Color(0xFF1694FF);
 Color secondColor = Color(0xFF2F313E);
 
 class createHabit extends StatefulWidget {
-  const createHabit({super.key});
+  final Function updateAllHabits;
+  List<String> allHabits;
+  createHabit({required this.allHabits, required this.updateAllHabits});
 
   @override
   State<createHabit> createState() => _createHabitState();
 }
 
 class _createHabitState extends State<createHabit> {
+  late Function updateAllHabits;
+
+  late List<String> allHabits;
+
+  initState() {
+    updateAllHabits = widget.updateAllHabits;
+    allHabits = widget.allHabits;
+  }
+
+  void addHabits(
+      List<String> allHabits, String potentialHabit, BuildContext context) {
+    // print(" add Habit Call ");
+
+    if (allHabits.length == 0) {
+      print(" 0 length  ");
+
+      allHabits.add(potentialHabit);
+      // print("all Habits before : ${allHabits} ");
+      print("about to call  update ");
+
+      updateAllHabits(allHabits);
+      Navigator.pushNamed(context, Routes.Homescreen);
+
+      // print(" create else  ");
+    } else {
+      for (var i = 0; i < allHabits.length; i++) {
+        Map<String, dynamic> exsisting_habit = json.decode(allHabits[i]);
+        Map<String, dynamic> upcomingHabit = json.decode(potentialHabit);
+        if (habitExsist(exsisting_habit, upcomingHabit)) {
+          //  just navigate to homescreen
+
+          Navigator.pushNamed(context, Routes.Homescreen);
+          print("  upcoming habit exisits ");
+        } else {
+          allHabits.add(potentialHabit);
+          updateAllHabits(allHabits);
+          Navigator.pushNamed(context, Routes.Homescreen);
+          // print(" create else  ");
+        }
+      }
+    }
+  }
+
+  void createHabit(List<String> allHabits, BuildContext context) {
+    Habit habit = Habit(habitId: 12, creationDate: DateTime.now().toString());
+    Map<String, dynamic> map = habit.toJson();
+
+    print(" create habit call ");
+
+    var jsonString = json.encode(map);
+
+    //  Now we will check if this habit exisit in all  habits and if it is then
+    //  we will  simple  Move to HomeScreen
+
+    //  other wise we will add this in allHabits and update the all habits at the
+    //  home screen and move  then will Move to HomeScreen
+    addHabits(allHabits, jsonString, context);
+  }
+
   get habitNameController => null;
 
   bool habitGoal = true;
+  Color habitColor = Colors.blue;
+  // bool habitGoal = false;
+  bool habitGoal = false;
+  //if 0 select # of times else Time
+
   int goalForHabitOptions = 0;
 
   Color hashOfTimeColor = Color(0xFF1694FF);
@@ -146,6 +217,49 @@ class _createHabitState extends State<createHabit> {
                             hintText: 'New habit name',
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Color(0xFF1694FF)),
+                            ),
+                          ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () => {
+                            Navigator.pop(context),
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        child: Image.asset(
+                          'images/new_habit_top2.png',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => {
+                          //save habit then navigate the page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              //change onboarding
+                              builder: (context) => chooseHabit(
+                                  allHabits: allHabits,
+                                  updateAllHabits: updateAllHabits),
+                            ),
+                          ),
+                        },
+                        child: InkWell(
+                          onTap: () {
+                            createHabit(allHabits, context);
+                          },
+                          child: Container(
+                            child: Text(
+                              "save",
+                              style: TextStyle(
+                                  color: Color(0xff1694FF), fontSize: 18),
                             ),
                           ),
                         ),
@@ -781,5 +895,11 @@ class _getSwitchState extends State<getSwitch> {
             print(getReminder);
           });
         });
+  bool habitExsist(Map<String, dynamic> exsisting_habit,
+      Map<String, dynamic> upcomingHabit) {
+    if (exsisting_habit['habitId'] == upcomingHabit['habitId']) {
+      return true;
+    }
+    return false;
   }
 }

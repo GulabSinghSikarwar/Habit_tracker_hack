@@ -1,11 +1,24 @@
 // import 'package:habit_tracker/screens/login.dart';
+import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Answer.dart';
+import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Quiz.dart';
+import 'package:habit_tracker/screens/Splash-Screen.dart';
 import 'package:habit_tracker/screens/chooseHabit.dart';
 import 'package:habit_tracker/screens/createhabit.dart';
-import 'package:habit_tracker/screens/onboarding1.dart';
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/core/constant/routes/routes.dart';
+import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
+import 'package:habit_tracker/features/Homescreen/inineCalendar/inline_calendar.dart';
+import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Quiz.dart';
+import 'package:habit_tracker/features/TestingFormScreen/testForm.dart';
+import 'package:habit_tracker/screens/onboardingscreen.dart';
+import 'package:habit_tracker/screens/onboardingscreen1.dart';
+import 'package:habit_tracker/screens/onboardingscreen2.dart';
+import 'package:habit_tracker/screens/quickHabits/prevent.dart';
+import 'package:habit_tracker/screens/quickHabits/stayhome.dart';
 
+ 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -43,13 +56,22 @@ class MyApp extends StatelessWidget {
       ),
       // darkTheme: ThemeData.dark(),
       // home: SplashScreen(),
-      initialRoute: '/createHabit',
+      initialRoute: '/onboarding2',
       routes: {
         // "/": (context) => SplashScreen(),
-        '/onboarding1': (context) => OnboardingPage1(),
-        '/chooseHabit': (context) => chooseHabit(),
-        '/createHabit': (context) => createHabit(),
+        // '/splashScreen': (context) => Splash_screen(),
+        // '/onboarding': (context) => onboardingPage(),
+        // '/onboarding1': (context) => onboardingPage1(),
+        '/onboarding2': (context) => OnboardingPage2(),
+        '/homeScreen': (context) => Homescreen(),
+        // '/onboarding1': (context) => Quiz(),
+        //'/onboarding1': (context) => OnboardingPage1(),
+        // '/chooseHabit': (context) => chooseHabit(),
+        // '/createHabit': (context) => createHabit(),
+        '/stayHomeHabit': (context) => stayHomeHabit(),
+        '/preventoption': (context) => preventoption(),
         // '/onboarding3': (context) => OnboardingPage3(),
+        '/initialQuiz':((context) => Quiz())
       },
     );
   }
