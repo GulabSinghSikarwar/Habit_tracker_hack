@@ -107,7 +107,7 @@ class _createHabitState extends State<createHabit> {
   bool habitGoal = true;
   Color habitColor = Colors.blue;
   // bool habitGoal = false;
-  bool habitGoal = false;
+  // bool habitGoal = false;
   //if 0 select # of times else Time
 
   int goalForHabitOptions = 0;
@@ -130,301 +130,259 @@ class _createHabitState extends State<createHabit> {
     // bool getReminder = false;
     return Scaffold(
         body: SafeArea(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          color: Color(0xFF1E212A),
-          child: Column(children: [
-            //from top icon to create new habit
-            Container(
-              decoration: BoxDecoration(
-                color: Color(0xff2F313E),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25)),
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 30.0,
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          child: Image.asset(
-                            'images/new_habit_top2.png',
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () => {
-                            //save habit then navigate the page
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                //change onboarding
-                                builder: (context) => chooseHabit(),
-                              ),
-                            ),
-                          },
-                          child: Container(
-                            child: Text(
-                              "save",
-                              style: TextStyle(color: firstColor, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      "Create new habit",
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            //habit name and color
-            Container(
-              margin: EdgeInsets.all(20),
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Color(0xff2F313E),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(children: [
-                Container(
-                  child: Column(
-                    children: [
-                      Container(
-                        child: TextFormField(
-                          controller: habitNameController,
-                          decoration: const InputDecoration(
-                            alignLabelWithHint: true,
-                            hintStyle: TextStyle(
-                                color: Color.fromARGB(255, 175, 175, 175)),
-                            hintText: 'New habit name',
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF1694FF)),
-                            ),
-                          ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () => {
-                            Navigator.pop(context),
-                          },
-                          child: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 30.0,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.5,
-                        child: Image.asset(
-                          'images/new_habit_top2.png',
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () => {
-                          //save habit then navigate the page
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              //change onboarding
-                              builder: (context) => chooseHabit(
-                                  allHabits: allHabits,
-                                  updateAllHabits: updateAllHabits),
-                            ),
-                          ),
-                        },
-                        child: InkWell(
-                          onTap: () {
-                            createHabit(allHabits, context);
-                          },
-                          child: Container(
-                            child: Text(
-                              "save",
-                              style: TextStyle(
-                                  color: Color(0xff1694FF), fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            child: Container(
+      constraints: BoxConstraints(minHeight: double.infinity),
+      color: Color(0xFF1E212A),
+      child: ListView(children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Color(0xff2F313E),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25)),
+          ),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Color(0xff1E212A),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: InkWell(
-                        child: Icon(
-                          Icons.circle,
-                          color: firstColor,
-                          size: 40.0,
-                        ),
-                        onTap: () => {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Container(
-                                  color: Color(0xff1E212A),
-                                  alignment: Alignment.center,
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  height: MediaQuery.of(context).size.height,
-                                  child: BlockPicker(
-                                    pickerColor: firstColor, //default color
-                                    onColorChanged: (Color color) {
-                                      //on color picked
-                                      // print(color);
-                                      setState(
-                                        () {
-                                          firstColor = color;
-                                          Navigator.of(context).pop();
-                                          getActiveHabitOption();
-                                          // getRepetationOptions();
-                                          getActiveRepetation();
-                                        },
-                                      );
-                                    },
-                                  ),
-                                );
-                              }),
-                        },
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 30.0,
                       ),
                     ),
-                    Text(
-                      "Choose color",
-                      style: Theme.of(context).textTheme.subtitle1,
-                    )
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      child: Image.asset(
+                        'images/new_habit_top2.png',
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () => {
+                        //save habit then navigate the page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            //change onboarding
+                            builder: (context) => chooseHabit(
+                                allHabits: allHabits,
+                                updateAllHabits: updateAllHabits),
+                          ),
+                        ),
+                      },
+                      child: InkWell(
+                        onTap: () {
+                          createHabit(allHabits, context);
+                        },
+                        child: Container(
+                          child: Text(
+                            "save",
+                            style: TextStyle(color: firstColor, fontSize: 18),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
-                )),
-              ]),
-            ),
-            //goal for habit
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Color(0xff2F313E),
-                borderRadius: BorderRadius.circular(15),
+                ),
               ),
+              Container(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  "Create new habit",
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+              ),
+            ],
+          ),
+        ),
+        //habit name and color
+        Container(
+          margin: EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Color(0xff2F313E),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Column(children: [
+            Container(
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Goal for Habit",
-                        style: Theme.of(context).textTheme.headline2,
+                  TextFormField(
+                    controller: habitNameController,
+                    decoration: const InputDecoration(
+                      alignLabelWithHint: true,
+                      hintStyle:
+                          TextStyle(color: Color.fromARGB(255, 175, 175, 175)),
+                      hintText: 'New habit name',
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF1694FF)),
                       ),
-                      //continue - adding the checkbox
-                      Checkbox(
-                        activeColor: firstColor,
-                        value: this.habitGoal,
-                        onChanged: (bool? habitGoal) {
-                          setState(() {
-                            this.habitGoal = habitGoal!;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  if (habitGoal) getGoalForHabit(),
-                ],
-              ),
-            ),
-            //set repetation
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Color(0xff2F313E),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(children: [
-                ...getRepetationOptions(),
-                SizedBox(
-                  height: 15,
-                ),
-                if (repetation == 0)
-                  (showDays())
-                else if (repetation == 1)
-                  (showWeeks())
-                else
-                  (showMonths()),
-              ]),
-            ),
-            //get reminder
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Color(0xff2F313E),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Text(
-                      "Get Reminder",
-                      style: Theme.of(context).textTheme.headline2,
                     ),
                   ),
-                  getSwitch(),
                 ],
               ),
             ),
-            //Reset
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              padding: EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: (() => {
-                      setState(
-                        () => null,
-                      )
-                    }),
-                child: Text(
-                  "Reset Form",
-                  style: Theme.of(context).textTheme.headline2,
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(5),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Color(0xff1E212A),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: InkWell(
+                    child: Icon(
+                      Icons.circle,
+                      color: firstColor,
+                      size: 40.0,
+                    ),
+                    onTap: () => {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              color: Color(0xff1E212A),
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width / 2,
+                              height: MediaQuery.of(context).size.height,
+                              child: BlockPicker(
+                                pickerColor: firstColor, //default color
+                                onColorChanged: (Color color) {
+                                  //on color picked
+                                  // print(color);
+                                  setState(
+                                    () {
+                                      firstColor = color;
+                                      Navigator.of(context).pop();
+                                      getActiveHabitOption();
+                                      // getRepetationOptions();
+                                      getActiveRepetation();
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          }),
+                    },
+                  ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                  shape: StadiumBorder(),
-                  primary: firstColor,
-                ),
-              ),
-            ),
+                Text(
+                  "Choose color",
+                  style: Theme.of(context).textTheme.subtitle1,
+                )
+              ],
+            )),
           ]),
         ),
-      ),
-    ));
+        //goal for habit
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Color(0xff2F313E),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Goal for Habit",
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  //continue - adding the checkbox
+                  Checkbox(
+                    activeColor: firstColor,
+                    value: this.habitGoal,
+                    onChanged: (bool? habitGoal) {
+                      setState(() {
+                        this.habitGoal = habitGoal!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              if (habitGoal) getGoalForHabit(),
+            ],
+          ),
+        ),
+        //set repetation
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Color(0xff2F313E),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Column(children: [
+            ...getRepetationOptions(),
+            SizedBox(
+              height: 15,
+            ),
+            if (repetation == 0)
+              (showDays())
+            else if (repetation == 1)
+              (showWeeks())
+            else
+              (showMonths()),
+          ]),
+        ),
+        //get reminder
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Color(0xff2F313E),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                child: Text(
+                  "Get Reminder",
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+              ),
+              getSwitch(),
+            ],
+          ),
+        ),
+        //Reset
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.all(20),
+          child: ElevatedButton(
+            onPressed: (() => {
+                  setState(
+                    () => null,
+                  )
+                }),
+            child: Text(
+              "Reset Form",
+              style: Theme.of(context).textTheme.headline2,
+            ),
+            style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+              shape: StadiumBorder(),
+              primary: firstColor,
+            ),
+          ),
+        ),
+      ]),
+    )));
   }
 
   getGoalForHabit() {
@@ -895,11 +853,13 @@ class _getSwitchState extends State<getSwitch> {
             print(getReminder);
           });
         });
-  bool habitExsist(Map<String, dynamic> exsisting_habit,
-      Map<String, dynamic> upcomingHabit) {
-    if (exsisting_habit['habitId'] == upcomingHabit['habitId']) {
-      return true;
-    }
-    return false;
   }
+}
+
+bool habitExsist(
+    Map<String, dynamic> exsisting_habit, Map<String, dynamic> upcomingHabit) {
+  if (exsisting_habit['habitId'] == upcomingHabit['habitId']) {
+    return true;
+  }
+  return false;
 }

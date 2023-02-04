@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 // import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
@@ -53,8 +53,8 @@ class _HabitTileState extends State<HabitTile> {
         color: Color.fromARGB(255, 91, 89, 223),
       ),
       margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-      height: MediaQuery.of(context).size.height/10,
-      width: MediaQuery.of(context).size.height/1.5,
+      height: MediaQuery.of(context).size.height / 10,
+      width: MediaQuery.of(context).size.height / 1.5,
       // color: Colors.white,
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Container(
