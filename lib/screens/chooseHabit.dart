@@ -6,7 +6,11 @@ import 'package:habit_tracker/screens/quickHabits/prevent.dart';
 import 'package:habit_tracker/screens/quickHabits/stayhome.dart';
 
 class chooseHabit extends StatelessWidget {
-  const chooseHabit({super.key});
+  final Function updateAllHabits;
+  List<String> allHabits;
+  chooseHabit({required this.allHabits, required this.updateAllHabits});
+
+  // const chooseHabit({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +60,7 @@ class chooseHabit extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       //change onboarding
-                      builder: (context) => createHabit(),
+                      builder: (context) => createHabit(allHabits: allHabits,updateAllHabits: updateAllHabits),
                     ),
                   ),
                 },

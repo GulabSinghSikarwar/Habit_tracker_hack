@@ -1,3 +1,4 @@
+import 'dart:ffi';
 // import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
@@ -40,18 +41,24 @@ class _HabitTileState extends State<HabitTile> {
       }
     }
 
+    print(" title : ${habitDetails['title']} ");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-      // height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: Color.fromARGB(255, 91, 89, 223),
+      ),
+      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+      height: MediaQuery.of(context).size.height/10,
+      width: MediaQuery.of(context).size.height/1.5,
       // color: Colors.white,
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Container(
-          // margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Icon(
             Icons.laptop,
             color: Colors.purple.shade800,
@@ -61,30 +68,45 @@ class _HabitTileState extends State<HabitTile> {
         ),
         Container(
           // color: Colors.teal,
-          // margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
+          margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
 
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "${habitDetails['title']}",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                // margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Text(
+                  "${habitDetails['title']}",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Source Sans Pro',
+                      color: Colors.white),
                 ),
               ),
               Container(
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.notifications,
-                      color: Colors.purple.shade800,
+                    Container(
+                      // margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+
+                      // padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: Icon(
+                        Icons.notifications,
+                        color: Colors.purple.shade800,
+                      ),
                     ),
-                    Text("${habitDetails['detail']}",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ))
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: Text("${habitDetails['detail']}",
+                          style: TextStyle(
+                              fontFamily: 'Source Sans Pro',
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white)),
+                    )
                   ],
                 ),
               )

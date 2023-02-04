@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
 import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Answer.dart';
 import 'package:habit_tracker/features/Initial_Quiz/screens/Quiz_Screen/Question.dart';
 
@@ -44,6 +45,14 @@ class QuizState extends State {
       {required int selected_answer, required int question_no}) {
     if (question_no >= 1) {
       //  move to next Screen
+       Navigator.push(
+            context,
+            MaterialPageRoute(
+              //change onboarding
+              builder: (context) => Homescreen(),
+            ),
+          );
+
 
     } else {
       _questionIndex++;
