@@ -12,13 +12,16 @@ class createHabit extends StatefulWidget {
 
 class _createHabitState extends State<createHabit> {
   get habitNameController => null;
-  Color habitColor = Colors.blue;
+  // Color habitColor = Colors.blue;
   // bool habitGoal = false;
-  bool habitGoal = false;
+  bool habitGoal = true;
   //if 0 select # of times else Time
   int goalForHabitOptions = 0;
   Color firstColor = Color(0xFF1694FF);
   Color secondColor = Color(0xFF2F313E);
+
+  Color hashOfTimeColor = Color(0xFF1694FF);
+  Color timeColor = Color(0xFF2F313E);
   int repetation = 0;
 
   get noOfTimesController => null;
@@ -134,7 +137,7 @@ class _createHabitState extends State<createHabit> {
                     child: InkWell(
                       child: Icon(
                         Icons.circle,
-                        color: habitColor,
+                        color: firstColor,
                         size: 40.0,
                       ),
                       onTap: () => {
@@ -147,14 +150,15 @@ class _createHabitState extends State<createHabit> {
                                 width: MediaQuery.of(context).size.width / 2,
                                 height: MediaQuery.of(context).size.height,
                                 child: BlockPicker(
-                                  pickerColor: habitColor, //default color
+                                  pickerColor: firstColor, //default color
                                   onColorChanged: (Color color) {
                                     //on color picked
                                     // print(color);
                                     setState(
                                       () {
-                                        habitColor = color;
+                                        firstColor = color;
                                         Navigator.of(context).pop();
+                                        getGoalForHabit();
                                       },
                                     );
                                   },
@@ -303,7 +307,7 @@ class _createHabitState extends State<createHabit> {
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 shape: StadiumBorder(),
                 // primary: firstColor,
-                primary: firstColor,
+                primary: hashOfTimeColor,
               ),
             ),
             ElevatedButton(
@@ -320,7 +324,7 @@ class _createHabitState extends State<createHabit> {
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 shape: StadiumBorder(),
-                primary: secondColor,
+                primary: timeColor,
               ),
             ),
           ],
@@ -331,6 +335,16 @@ class _createHabitState extends State<createHabit> {
           (habitGoalInputField('0 minuts')),
       ],
     );
+  }
+
+  getActiveHabitOption() {
+    if (goalForHabitOptions == 0) {
+      hashOfTimeColor = firstColor;
+      timeColor = secondColor;
+    } else {
+      hashOfTimeColor = secondColor;
+      timeColor = firstColor;
+    }
   }
 
   habitGoalInputField(String time) {
@@ -346,18 +360,6 @@ class _createHabitState extends State<createHabit> {
         ),
       ),
     );
-  }
-
-  void getActiveHabitOption() {
-    if (goalForHabitOptions == 0) {
-      firstColor = Color(0xFF1694FF);
-      secondColor = Color(0xFF2F313E);
-      print(goalForHabitOptions);
-    } else {
-      firstColor = Color(0xFF2F313E);
-      secondColor = Color(0xFF1694FF);
-      print(goalForHabitOptions);
-    }
   }
 
   showDays() {

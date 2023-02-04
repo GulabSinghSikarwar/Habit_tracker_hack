@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Blood Bank App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        // brightness: Brightness.dark,
         primarySwatch: Colors.blue,
         unselectedWidgetColor: Colors.white,
         textTheme: TextTheme(
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         // buttonTheme:
       ),
+      // darkTheme: ThemeData.dark(),
       // home: SplashScreen(),
       initialRoute: '/createHabit',
       routes: {
