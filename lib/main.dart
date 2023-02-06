@@ -58,9 +58,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/onboarding2',
       routes: {
         // "/": (context) => SplashScreen(),
-        // '/splashScreen': (context) => Splash_screen(),
-        // '/onboarding': (context) => onboardingPage(),
-        // '/onboarding1': (context) => onboardingPage1(),
+        '/splashScreen': (context) => Splash_screen(),
+        '/onboarding': (context) => onboardingPage(),
+        '/onboarding1': (context) => onboardingPage1(),
         '/onboarding2': (context) => OnboardingPage2(),
         '/homeScreen': (context) => Homescreen(),
         // '/onboarding1': (context) => Quiz(),
