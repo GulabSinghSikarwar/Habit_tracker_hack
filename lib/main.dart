@@ -16,7 +16,6 @@ import 'package:habit_tracker/screens/onboardingscreen2.dart';
 import 'package:habit_tracker/screens/quickHabits/prevent.dart';
 import 'package:habit_tracker/screens/quickHabits/stayhome.dart';
 
- 
 void main() {
   runApp(MyApp());
 }
@@ -31,6 +30,7 @@ class MyApp extends StatelessWidget {
       title: 'Blood Bank App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        // brightness: Brightness.dark,
         primarySwatch: Colors.blue,
         unselectedWidgetColor: Colors.white,
         textTheme: TextTheme(
@@ -53,13 +53,15 @@ class MyApp extends StatelessWidget {
         ),
         // buttonTheme:
       ),
+      // darkTheme: ThemeData.dark(),
       // home: SplashScreen(),
-      initialRoute: '/onboarding2',
+      initialRoute: '/splashScreen',
+      // initialRoute: '/onboarding2',
       routes: {
         // "/": (context) => SplashScreen(),
-        // '/splashScreen': (context) => Splash_screen(),
-        // '/onboarding': (context) => onboardingPage(),
-        // '/onboarding1': (context) => onboardingPage1(),
+        '/splashScreen': (context) => Splash_screen(),
+        '/onboarding': (context) => onboardingPage(),
+        '/onboarding1': (context) => onboardingPage1(),
         '/onboarding2': (context) => OnboardingPage2(),
         '/homeScreen': (context) => Homescreen(),
         // '/onboarding1': (context) => Quiz(),
@@ -69,7 +71,7 @@ class MyApp extends StatelessWidget {
         '/stayHomeHabit': (context) => stayHomeHabit(),
         '/preventoption': (context) => preventoption(),
         // '/onboarding3': (context) => OnboardingPage3(),
-        '/initialQuiz':((context) => Quiz())
+        '/initialQuiz': ((context) => Quiz())
       },
     );
   }

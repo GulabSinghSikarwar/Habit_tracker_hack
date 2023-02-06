@@ -98,6 +98,9 @@ flutter:
       fonts:
        - asset: fonts/SourceSansPro-SemiBold.ttf
          weight: 600
+    - family: orange-juice
+      fonts:
+        - asset: fonts/orange-juice.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
