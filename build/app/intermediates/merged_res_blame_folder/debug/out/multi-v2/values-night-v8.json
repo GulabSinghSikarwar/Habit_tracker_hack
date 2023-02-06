@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/gulab/flutterDev/project/stage2-integ/habit_tracker-master/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "/home/gulab/flutterDev/project/stage2-integ-prep/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/gulab/flutterDev/project/stage2-integ/habit_tracker-master/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/home/gulab/flutterDev/project/stage2-integ-prep/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
