@@ -1,5 +1,3 @@
-// cetg*10+subCetgory
-//  eg 2*10+5=25
 import 'package:flutter/foundation.dart';
 
 enum Categories {

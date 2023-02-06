@@ -19,7 +19,7 @@
 import 'package:habit_tracker/features/Homescreen/HomeScreen.dart';
 
 class Routes {
-  static const String Homescreen='/homescreen';
+  static const String Homescreen='/homeScreen';
   static const String createHabitForm='/createHabitForm';
 
   // static const String Homescreen='/homescreen',

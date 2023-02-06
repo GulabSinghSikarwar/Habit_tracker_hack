@@ -14,7 +14,7 @@ class _onboardingPageState extends State<onboardingPage> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        color: Colors.blue[900],
+        color: Color(0xFF311EB6),
         child: Column(
           children: [
             Container(
@@ -28,9 +28,7 @@ class _onboardingPageState extends State<onboardingPage> {
               height: 180,
             ),
             Container(
-                height: 300,
-                width: 300,
-                child: Center(child: Image.asset("images/logo.jpg"))),
+                child: Center(child: Image.asset("images/work_time.gif"))),
           ],
         ),
       )),

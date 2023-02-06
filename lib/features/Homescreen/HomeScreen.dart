@@ -21,7 +21,7 @@ class HomeScreenState extends State<Homescreen> {
   DateTime _habit_date = DateTime.now();
   late List<String> allHabits;
   void fillInitial_allHabits(List<String> allHabitList) {
-    allHabits = allHabitList;
+    allHabits = [...allHabitList];
   }
 
   void updateAllHabits(List<String> updatedList) {
@@ -61,7 +61,7 @@ class HomeScreenState extends State<Homescreen> {
           onPressed: (() {
             Navigator.push(context, MaterialPageRoute(
               builder: (context) {
-                return chooseHabit();
+                return chooseHabit(   allHabits: allHabits, updateAllHabits: updateAllHabits);
               },
             ));
           }),
@@ -136,6 +136,7 @@ class HomeScreenState extends State<Homescreen> {
 
   void updateListInSP(List<String> allHabits) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('items', <String>['Earth', 'Moon', 'Sun']);
+    await prefs.setStringList('allHabits', allHabits);
+
   }
 }

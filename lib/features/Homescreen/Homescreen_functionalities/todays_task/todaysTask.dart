@@ -57,9 +57,9 @@ class TodaysTaskState extends State<TodaysTask> {
 
 
 
-      if (needToShowToday(todays_date, map))
+     if (needToShowToday(todays_date, map) || map['isActive']==true)
         allFormated_Habits.add(Habit.fromJsonMap(map));
-    
+        
     }
     
   }
