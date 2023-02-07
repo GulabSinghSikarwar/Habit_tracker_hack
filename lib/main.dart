@@ -55,7 +55,9 @@ class MyApp extends StatelessWidget {
       ),
       // darkTheme: ThemeData.dark(),
       // home: SplashScreen(),
-      initialRoute: '/onboarding2',
+      // initialRoute: '/homeScreen',
+      initialRoute: '/splashScreen',
+      // initialRoute: '/onboarding2',
       routes: {
         // "/": (context) => SplashScreen(),
         '/splashScreen': (context) => Splash_screen(),

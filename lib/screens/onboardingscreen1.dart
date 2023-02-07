@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/core/constant/routes/routes.dart';
 
 class onboardingPage1 extends StatefulWidget {
   const onboardingPage1({super.key});
@@ -32,30 +33,55 @@ class onboardingPage1State extends State<onboardingPage1> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      height: 200,
-                      width: 190,
-                      child: Image.asset("images/drinkwater.jpg"),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.OnboardingPage2);
+                      },
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.OnboardingPage2);
+                        },
+                        child: Container(
+                          height: 200,
+                          width: 190,
+                          child: Image.asset("images/drinkwater.jpg"),
+                        ),
+                      ),
                     ),
-                    Container(
-                      height: 200,
-                      width: 180,
-                      child: Image.asset("images/morningexercise.jpg"),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.OnboardingPage2);
+                      },
+                      child: Container(
+                        height: 200,
+                        width: 180,
+                        child: Image.asset("images/morningexercise.jpg"),
+                      ),
                     ),
                   ],
                 ),
               ),
               Row(
                 children: [
-                  Container(
-                    height: 200,
-                    width: 190,
-                    child: Image.asset("images/read.jpg"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.OnboardingPage2);
+                    },
+                    child: Container(
+                      height: 200,
+                      width: 190,
+                      child: Image.asset("images/read.jpg"),
+                    ),
                   ),
-                  Container(
-                    height: 200,
-                    width: 190,
-                    child: Image.asset("images/meditate.jpg"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.OnboardingPage2);
+                    },
+                    child: Container(
+                      height: 200,
+                      width: 190,
+                      child: Image.asset("images/meditate.jpg"),
+                    ),
                   ),
                 ],
               ),

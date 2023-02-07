@@ -5,7 +5,7 @@ import 'package:habit_tracker/core/constant/Models/Habit.dart';
 import 'package:habit_tracker/features/Homescreen/Homescreen_functionalities/todays_task/HabitTile.dart';
 
 class TodaysTask extends StatefulWidget {
-  final DateTime todaysDate ;
+  final DateTime todaysDate;
   final List<String> allHabits;
 
   TodaysTask({required this.todaysDate, required this.allHabits});
@@ -39,7 +39,7 @@ class TodaysTaskState extends State<TodaysTask> {
     return Container(
       child: Column(
         children: [
-         ...( allFormated_Habits.map((habit) =>HabitTile(habit:habit )))
+          ...(allFormated_Habits.map((habit) => HabitTile(habit: habit)))
         ],
       ),
     );
@@ -54,24 +54,34 @@ class TodaysTaskState extends State<TodaysTask> {
       Map<String, dynamic> map = json.decode(allHabits[i]);
       print(map['completed'].runtimeType);
 
-
-
-
-     if (needToShowToday(todays_date, map) || map['isActive']==true)
+      if (needToShowToday(todays_date, map))
         allFormated_Habits.add(Habit.fromJsonMap(map));
-        
     }
-    
   }
 
   bool needToShowToday(DateTime todays_date, Map<String, dynamic> map) {
+    DateTime creationDate = DateTime.parse(map['creationDate']);
+    String d1 =
+        "${creationDate.day}/${creationDate.month}/${creationDate.year}";
+    String d2 = "${todays_date.day}/${todays_date.month}/${todays_date.year}";
+
+    if (d1 == d2) return true;
+
+    if (todays_date.compareTo(creationDate) > 0) {
+      print(
+          (' creation date : ${creationDate.day} todays ${todays_date.day} '));
+
+      print(" result : ${todays_date.compareTo(creationDate)}");
+
+      return true && map['isActive'];
+    }
     bool isActive = map['isActive'];
-    // print(isActive.runtimeType);
+    print(" is active type : ${isActive.runtimeType}");
     print("map  : ${map}");
+
 
     int n1 = map['completed'].length;
     int n2 = map['notCompleted'].length;
-    
 
     if (n1 != 0) {
       for (var i = 0; i < n1; i++) {
@@ -93,15 +103,12 @@ class TodaysTaskState extends State<TodaysTask> {
 
         DateTime date = DateTime.parse(map['notCompleted'][i]);
         String d1 = "${date.day}/${date.month}/${date.year}";
-        String d2 ="${todays_date.day}/${todays_date.month}/${todays_date.year}";
+        String d2 =
+            "${todays_date.day}/${todays_date.month}/${todays_date.year}";
 
-        if(d1!=null && d2!=null && d1==d2)
-        {
+        if (d1 != null && d2 != null && d1 == d2) {
           return true;
-
         }
-
-        
       }
     }
     return false;
