@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/core/constant/routes/routes.dart';
 
 class Splash_screen extends StatelessWidget {
+
+   void NavigateToOnboardingScreen(BuildContext context){
+    Future.delayed(Duration(seconds: 2),(){
+      Navigator.pushNamed(context, Routes.OnboardingPage);
+
+
+
+    });
+
+   }
+
   @override
   Widget build(BuildContext context) {
+    NavigateToOnboardingScreen(context);
+    
     // TODO: implement build
     return Container(
         // color: Colors.blue[50],

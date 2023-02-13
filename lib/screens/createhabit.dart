@@ -150,10 +150,16 @@ class _createHabitState extends State<createHabit> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.close,
-                        color: Colors.white,
-                        size: 30.0,
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                          size: 30.0,
+                        ),
                       ),
                     ),
                     Container(
