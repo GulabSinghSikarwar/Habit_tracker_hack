@@ -1,4 +1,4 @@
-#Mon Feb 06 16:51:41 IST 2023
-base.0=/home/gulab/flutterDev/project/stage2-integ-prep/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Sat Feb 25 05:57:27 IST 2023
+base.0=E\:\\FLUTTER_PROJECT\\hack\\habit_tracker\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
